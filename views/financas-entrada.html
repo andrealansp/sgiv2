@@ -53,7 +53,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Adicionar Menus
+      Entradas Financeiras
       <small>Cadastro / Alteração / Exclusão </small>
     </h1>
     <ol class="breadcrumb">
@@ -64,27 +64,27 @@
 
   <!-- Main content -->
   <section class="content container-fluid">
-    <a href="/menu/create" class="btn btn-success">Criar Menu</a>
-    <table class="table table-hover" id="tb-menu">
+    <a href="entrada/inserir" class="btn btn-success">Inserir Entrada</a>
+    <table class="table table-hover" id="tb-users">
       <thead>
         <tr>
-          <th>id</th>
-          <th>Menu</th>
-          <th>Profile</th>
-          <th>Ícone</th>
-          <th>Ordem</th>
+          <th>Entrada</th>
+          <th>Irmão</th>
+          <th>Valor</th>
+          <th>Tipo de Pagamento</th>
+          <th>Tipo de Entrada</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
-        {loop="$menu"}
+        {loop="$entradas"}
         <tr>
-          <td>{$value.idmenu}</td>
-          <td>{$value.desmenu}</td>
-          <td id="td-profile">{$value.desprofile}</td>
-          <td><i class="{$value.desicon}"></i></td>
-          <td>{$value.desorder}</td>
-          <td><a href="/menu/update/{$value.idmenu}" class="btn btn-success">Editar</a> / <a href="/menu/del/{$value.idmenu}" class="btn btn-danger">Deletar</a></td>
+          <td>{$value.dtentrada}</td>
+          <td>{function="utf8_encode($value.desdescricao)"}</td>
+          <td>{$value.nunvalor}</td>
+          <td>{$value.destipopag}</td>
+          <td>{function="utf8_encode($value.destipoentrada)"}</td>
+          <td><a href="/financeiro/entrada/update/{$value.identrada}" class="btn btn-success">Editar</a> / <a href="/financeiro/entrada/delete/{$value.identrada}" class="btn btn-danger">Deletar</a></td>
         </tr>
         {/loop}
       </tbody>

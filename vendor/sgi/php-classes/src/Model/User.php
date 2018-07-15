@@ -27,23 +27,19 @@ class User extends Model {
 
     public function create() {
         $sql = new Sql();
-     
-        $results = $sql->select("CALL `bd_iadt`.`sp_create_usuario`(:desnome, :deslogin, :despassword,:desemail,:desfuncao,:desperfil)", array( ":desnome" => $this->desnome,
-            ":deslogin" => $this->deslogin,
-            ":despassword" => password_hash($this->despassword, PASSWORD_DEFAULT),
-            ":desemail" => $this->desemail,
-            ":desfuncao" => $this->desfuncao,
-            ":desperfil" => $this->desperfil));
 
-        print_r($results);
-
-        exit();
+        $results = $sql->query("INSERT INTO `bd_iadt`.`tb_usuarios` (`desnome`,`deslogin`,`desemail`,`despassword`,`desfuncao`)VALUES
+            (:desnome,:deslogin,:desemail,:despassword,:desfuncao);", array( ":desnome" => $this->desnome,
+                ":deslogin" => $this->deslogin,
+                ":despassword" => password_hash($this->despassword, PASSWORD_DEFAULT),
+                ":desemail" => $this->desemail,
+                ":desfuncao" => $this->desfuncao));
 
         $this->setData($results[0]);
-       
+
         $mail = new Mail($results["desemail"], $results["desnome"], "SGI-ADM-CRIACAO-USUARIO", "criacao",$results[0]);
         $mail->send();
-       
+
     }
 
     public function update() {
@@ -61,7 +57,7 @@ class User extends Model {
         $results = $sql->select("CALL `bd_iadt`.`sp_update_usuario`(:desnome, :deslogin, :despassword,:desemail,:desfuncao,:desperfil,:idusuarios)", $parans);
 
         $this->setData($results[0]);
-       
+
     }
 
     public static function login($login, $password): User {
@@ -99,9 +95,9 @@ class User extends Model {
         $db->query("CALL `sp_delete_usuario`(:iduser)", array(':iduser' => $this->idusuarios));
     }
     public function getUserBySession() {
-         if (isset($_SESSION[User::SESSION]) || ($_SESSION[User::SESSION]["iduser"] > 0)){
-             $this->setData($_SESSION[User::SESSION]);
-         }
-    }
+     if (isset($_SESSION[User::SESSION]) || ($_SESSION[User::SESSION]["iduser"] > 0)){
+         $this->setData($_SESSION[User::SESSION]);
+     }
+ }
 
 }

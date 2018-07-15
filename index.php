@@ -7,6 +7,7 @@ use \Rain\tpl;
 use \SGI\Page;
 use \SGI\Model\User;
 use \SGI\Model\Menus;
+use \SGI\Model\Financas;
 
 $app = new \Slim\Slim();
 
@@ -106,50 +107,31 @@ $app->post("/registrar", function() {
     exit();
 });
 
-$app->get("/menu",function(){
+
+//-------------- Rotas Entradas Financeiras---------------
+
+$app->get("/financeiro/entrada",function(){
    //User::verifyLogin();
-   $menu = new Menus();
-   $p = new Page();
-   $data=$menu->listAll();
-   $p->setTpl("menu",array("menu"=>$data));
+   $page = new Page(); 
+   $entradas = new Financas();
+   $data = $entradas->listaEntradas();
+   $page->setTpl("financas-entrada",array('entradas' =>$data));
 });
 
-$app->get("/menu/create",function(){
+$app->get("/financeiro/entrada/inserir",function(){
    //User::verifyLogin();
-   $p = new Page();
-   $p->setTpl("menu-create");
+   $page = new Page(); 
+   $page->setTpl("financas-entrada-inserir");
 });
-$app->post("/menu/create",function(){
-   $m = new Menus();
-   $m->setData($_POST);
-   $m->save();
-   header("Location: /menu");
-   exit();
+
+$app->post("/financeiro/entrada/inserir", function() {
+    $Financas = new Financas();
+    $Financas->setData($_POST);
+    $Financas->inseriEntradas();
+    header("Location: /financeiro/entrada");
+    exit();
 });
-$app->get("/menu/update/:idmenu",function($idmenu){
-   //User::verifyLogin();
-   $p = new Page();
-   $m = new Menus();
-   $m->get((int)$idmenu);
-   $p->setTpl("menu-update",array("menu"=>$m->getValues()));
-});
-$app->post("/menu/update/:idmenu",function($idmenu){
-   //User::verifyLogin();
-   $p = new Page();
-   $m = new Menus();
-   $m->get((int)$idmenu);
-   $m->setData($_POST);
-   $m->update();
-   header("Location: /menu");
-   exit();
-});
-$app->get("/menu/del/:idmenu",function($idmenu){
-   //User::verifyLogin();
-   $m = new Menus();
-   $m->get((int)$idmenu);
-   $m->delete();
-   header("Location: /menu");
-   exit();  
-});
+
+
 
 $app->run();

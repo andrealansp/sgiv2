@@ -17,7 +17,7 @@
         <ul class="treeview-menu">
           <li><a href="/users">Usuários</a></li>
           <li><a href="/menu">Menu</a></li>
-           <li><a href="/submenu">Sub-Menu</a></li>
+          <li><a href="/submenu">Sub-Menu</a></li>
         </ul>
       </li>
       <li class="treeview">
@@ -53,8 +53,8 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Criar Usuários
-      <small>Formulário para Criação de Usuários</small>
+      Entradas Financeiras
+      <small>Cadastro / Alteração / Exclusão </small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -64,76 +64,59 @@
 
   <!-- Main content -->
   <section class="content container-fluid">
-    <form action="/users/create" method="post" >
+    <form action="/financeiro/entrada/inserir" method="post" >
       <div class="row">
-        <div class="col-lg-5 col-md-5">
+        <div class="col-lg-2 col-md-5">
          <div class="form-group">
-          <label for="nome">Nome</label>
-          <input type="text" class="form-control" id="nome" placeholder="Nome" name="desnome">
+          <label for="dataEntrada">Data de Entrada</label>
+          <input type="date" class="form-control" id="dataEntrada" placeholder="Data de Entrada" name="dtentradas">
         </div>
       </div>
       <div class="col-lg-5 col-md-5">
         <div class="form-group">
-          <label for="login">Login</label>
-          <input type="text" class="form-control" id="login" placeholder="Login" name="deslogin">
+          <label for="descricao">Nome do Irmão</label>
+          <input type="text" class="form-control" id="descricao" placeholder="Nome do irmão" name="desdescricao">
+        </div>    
+      </div>
+      <div class="col-lg-5 col-md-5">
+        <div class="form-group">
+          <label for="valor">Valor</label>
+          <input type="text" class="form-control" id="valor" placeholder="Valor" name="nunvalor">
         </div>    
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-lg-4 col-md4">
-        <div class="form-group">
-          <label for="despassword">Senha</label>
-          <input type="password" id="despassword" class="form-control" name="password" placeholder="Senha">
-        </div>
-      </div>
-      <div class="col-lg-4 col-md4"><div class="form-group">
-        <label for="ctrpassword">Confirme a Senha</label>
-        <input type="password" id="ctrpassword" name="despassword" class="form-control" placeholder="Confirme a Senha">
-      </div></div>
-   </div>
-
-    <div class="row">
-      <div class="col-lg-5 col-md-5">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Email" class="form-control" >
-        </div>
-      </div>
-      <div class="col-lg-5 col-md-5">
-        <div class="form-group ">
-          <label for="ctremail">Confirme o e-mail</label>
-          <input type="email" id="ctremail" name="desemail" placeholder="Confirme o Email" class="form-control">
-        </div>
-      </div>
-    </div>
-
     <div class="row">
       <div class="col-lg-4">
         <div class="form-group">
-          <label for="profile">Perfil de Usuário no Sistema:</label>
-          <select name="desperfil" id="profile" class="form-control">
-            <option value=""></option>
-            </select>
-            </div>  
-          </div>
-          <div class="col-lg-4">
-            <div class="form-group">
-              <label for="funcoes">Função Ecleciástica:</label>
-              <select name="desfuncao" id="funcoes" class="form-control">
-                <option value="-1"></option>
-              </select>
-            </div>     
-          </div>          
-         </div> 
-        <div class="row">
-          <div class="col-lg-2 col-md-2">
-              <button type="submit" class="btn btn-sucess">Enviar</button>
-          </div>
-        </div>
-      </form>
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+          <label for="tppag">Tipo de pagamento</label>
+          <select name="destipopag" id="tppag" class="form-control">
+            <option value="">---------------</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cheque">Cheque</option>
+            <option value="Transferência Bancária">Transferência Bancária</option>
+          </select>
+        </div>  
+      </div>
+      <div class="col-lg-4">
+        <div class="form-group">
+          <label for="tpentrada">Tipo de Entrada</label>
+          <select name="destipoentrada" id="tpentrada" class="form-control">
+            <option value="">---------------</option>
+            <option value="Dízimo">Dízimo</option>
+            <option value="Oferta">Oferta</option>
+            <option value="Contribuição Específica">Contribuição Específica</option>
+          </select>
+        </div>     
+      </div> 
+    </div>       
+    <div class="row">
+      <div class="col-lg-2 col-md-2">
+        <button type="submit" class="btn btn-sucess">Enviar</button>
+      </div>
+    </div>
+  </form>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
