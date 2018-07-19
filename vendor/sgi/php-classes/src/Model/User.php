@@ -16,7 +16,7 @@ class User extends Model {
     }
 
     public static function verifyLogin() {
-        if (!isset($_SESSION[User::SESSION]) || !($_SESSION[User::SESSION]["iduser"] > 0)) {
+        if (!isset($_SESSION[User::SESSION]) || !($_SESSION[User::SESSION]["idusuarios"] > 0)) {
             echo "<script>window.location.replace('/');</script>";
         }
     }
@@ -27,18 +27,20 @@ class User extends Model {
 
     public function create() {
         $sql = new Sql();
+        $parans = array(":desnome" => $this->desnome,
+               ":deslogin" => $this->deslogin,
+               ":despassword" => password_hash($this->despassword, PASSWORD_DEFAULT),
+               ":desemail" => $this->desemail,
+               ":desfuncao" => $this->desfuncao,
+               ":desperfil" => $this->desperfil);
 
-        $results = $sql->query("INSERT INTO `bd_iadt`.`tb_usuarios` (`desnome`,`deslogin`,`desemail`,`despassword`,`desfuncao`)VALUES
-            (:desnome,:deslogin,:desemail,:despassword,:desfuncao);", array( ":desnome" => $this->desnome,
-                ":deslogin" => $this->deslogin,
-                ":despassword" => password_hash($this->despassword, PASSWORD_DEFAULT),
-                ":desemail" => $this->desemail,
-                ":desfuncao" => $this->desfuncao));
+        $results = $sql->select("CALL `bd_iadt`.`sp_create_usuario`(:desnome,:deslogin,:despassword, :desemail,:desfuncao,:desperfil)",$parans);
 
         $this->setData($results[0]);
 
-        $mail = new Mail($results["desemail"], $results["desnome"], "SGI-ADM-CRIACAO-USUARIO", "criacao",$results[0]);
-        $mail->send();
+        
+        //$mail = new Mail($results[0]["desemail"], $results[0]["desnome"], "SGI-ADM-CRIACAO-USUARIO", "criacao",$results[0]);
+        //$mail->send();
 
     }
 
@@ -54,7 +56,7 @@ class User extends Model {
             ":idusuarios"=> $this->idusuarios
         );
 
-        $results = $sql->select("CALL `bd_iadt`.`sp_update_usuario`(:desnome, :deslogin, :despassword,:desemail,:desfuncao,:desperfil,:idusuarios)", $parans);
+        $results = $sql->select("CALL `bd_iadt`.`sp_edita_usuario`(:desnome,:deslogin, :despassword,:desemail,:desfuncao,:desperfil,:idusuarios)", $parans);
 
         $this->setData($results[0]);
 
@@ -63,7 +65,7 @@ class User extends Model {
     public static function login($login, $password): User {
         $db = new Sql();
 
-        $results = $db->select("SELECT iduser,deslogin,despassword FROM tb_users WHERE deslogin = :deslogin", array("deslogin" => $login));
+        $results = $db->select("SELECT idusuarios,deslogin,despassword FROM tb_usuarios WHERE deslogin = :deslogin", array(":deslogin" => $login));
 
         if (count($results) === 0) {
             throw new \Exception("Dados Inconsistentes.");
@@ -85,8 +87,7 @@ class User extends Model {
     public function get($iduser) {
         $sql = new Sql();
         $results = $sql->select("Select * from tb_usuarios as a right join tb_controle_acesso as b using(idusuarios) where idusuarios = :idusuarios", array(
-            ":idusuarios" => $iduser
-        ));
+            ":idusuarios" => $iduser));
         $this->setData($results[0]);
     }
 

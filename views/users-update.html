@@ -1,53 +1,4 @@
 
-<!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
-
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-
-        <!-- Sidebar Menu -->
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">Lista de Funções</li>
-            <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Administração</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/users">Usuários</a></li>
-                    <li><a href="/menu">Menu</a></li>
-                    <li><a href="/submenu">Sub-Menu</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Secretaria</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Financeiro</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
-            </li>
-        </ul>
-        <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
-</aside>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -64,7 +15,7 @@
 
     <!-- Main content -->
     <section class="content container-fluid">
-        <form action="/users/{$user.idusuarios}" method="post" >
+        <form action="/administracao/users/editar/{$user.idusuarios}" method="post" >
             <div class="row">
                 <div class="col-lg-5 col-md-5">
                     <div class="form-group">
@@ -88,51 +39,63 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md4"><div class="form-group">
-                        <label for="ctrpassword">Confirme a Senha</label>
-                        <input type="password" id="ctrpassword" name="ctrpassword" class="form-control" placeholder="Confirme a Senha">
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-lg-5 col-md-5">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="desemail" placeholder="Email" class="form-control" value="{$user.desemail}" >
-                    </div>
+                    <label for="ctrpassword">Confirme a Senha</label>
+                    <input type="password" id="ctrpassword" name="ctrpassword" class="form-control" placeholder="Confirme a Senha">
                 </div>
-                <div class="col-lg-5 col-md-5">
-                    <div class="form-group ">
-                        <label for="ctremail">Confirme o e-mail</label>
-                        <input type="email" id="ctremail" name="ctremail" placeholder="Confirme o Email" class="form-control">
-                    </div>
+            </div>  
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5 col-md-5">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="desemail" placeholder="Email" class="form-control" value="{$user.desemail}" >
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label for="profile">Perfil de Usuário no Sistema:</label>
-                        <select name="desperfil" id="profile" class="form-control"></select>
-                    </div>
-                </div> 
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label for="profile">Função Ecleciástica:</label>
-                        <select name="desfuncao" id="funcoes" class="form-control">
-                        </select>
-                    </div>     
-                </div>          
-
-            </div>
-            <div class="row">
-                <div class="col-lg-2 col-md-2">
-                    <button type="submit" class="btn btn-success">Enviar</button>
+            <div class="col-lg-5 col-md-5">
+                <div class="form-group ">
+                    <label for="ctremail">Confirme o e-mail</label>
+                    <input type="email" id="ctremail" name="ctremail" placeholder="Confirme o Email" class="form-control">
                 </div>
             </div>
-        </form>
-    </section>
-    <!-- /.content -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label for="profile">Perfil de Usuário no Sistema:</label>
+                    <select name="desperfil" id="profile" class="form-control">
+                      <option value="Administrador">Administrador</option>
+                      <option value="Secretária">Secretária</option>
+                      <option value="Financeiro">Financeiro</option>
+                      <option value="Membro">Membro</option>
+                  </select>
+              </div>
+          </div> 
+          <div class="col-lg-4">
+            <div class="form-group">
+                <label for="profile">Função Ecleciástica:</label>
+                <select name="desfuncao" id="funcoes" class="form-control">
+                   <option value="Pastor Presidente">Pastor Presidente</option>
+                   <option value="Vice Presidente">Vice Presidente</option>
+                   <option value="1º Tesoureiro">1º Tesoureiro</option>
+                   <option value="2º Tesoureiro">2º Tesoureiro</option>
+                   <option value="1ª Secretária">1ª Secretária</option>
+                   <option value="2ª Secretária">2ª Secretária</option>
+                    <option value="Membro">Membro</option>
+               </select>
+           </div>     
+       </div>          
+
+   </div>
+   <div class="row">
+    <div class="col-lg-2 col-md-2">
+        <button type="submit" class="btn btn-success">Enviar</button>
+    </div>
+</div>
+</form>
+</section>
+<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 

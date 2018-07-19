@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="/views/relatorios/estilos.css">
+</head>
+<body>
+	<h1>Lista de Membros</h1>
+	<table>
+		<tr>
+			<th>Nome</th>
+			<th>Endereço</th>
+			<th>Email</th>
+			<th>Telefones</th>
+			<th>Aniversário</th>
+		</tr>
+		{loop="$dados"}
+		<tr>
+			<td>{$value.desnome}</td>
+			<td>{$value.endereco}</td>
+			<td>{$value.desemail}</td>
+			<td>{$value.telefones}</td>
+			<td>{$value.dtnascimento}</td>
+		</tr>
+		{/loop}
+	</table>
+</body>
+</html>
+
+
+
+

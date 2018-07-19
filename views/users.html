@@ -1,53 +1,4 @@
 
-<!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
-
-  <!-- sidebar: style can be found in sidebar.less -->
-  <section class="sidebar">
-
-    <!-- Sidebar Menu -->
-    <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">Lista de Funções</li>
-      <li class="treeview">
-        <a href="#"><i class="fa fa-link"></i> <span>Administração</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="/users">Usuários</a></li>
-          <li><a href="/menu">Menu</a></li>
-           <li><a href="/submenu">Sub-Menu</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#"><i class="fa fa-link"></i> <span>Secretaria</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#">Link in level 2</a></li>
-          <li><a href="#">Link in level 2</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#"><i class="fa fa-link"></i> <span>Financeiro</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#">Link in level 2</a></li>
-          <li><a href="#">Link in level 2</a></li>
-        </ul>
-      </li>
-    </ul>
-    <!-- /.sidebar-menu -->
-  </section>
-  <!-- /.sidebar -->
-</aside>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -64,14 +15,14 @@
 
   <!-- Main content -->
   <section class="content container-fluid">
-    <a href="/users/create" class="btn btn-success">Criar Usuário</a>
+    <a href="/administracao/users/create" class="btn btn-success">Criar Usuário</a>
     <table class="table table-hover" id="tb-users">
       <thead>
         <tr>
           <th>id</th>
           <th>Nome</th>
           <th>Login</th>
-          <th>Profile</th>
+          <th>Perfil</th>
           <th>Função</th>
           <th>Dt Registro</th>
           <th>Ações</th>
@@ -82,12 +33,12 @@
         {loop="$users"}
         <tr>
           <td>{$value.idusuarios}</td>
-          <td>{function="utf8_encode($value.desnome)"}</td>
+          <td>{$value.desnome}</td>
           <td>{$value.deslogin}</td>
           <td id="td-profile">{$value.desperfil}</td>
           <td id="td-funcao">{$value.desfuncao}</td>
           <td>{$value.dtcriacao}</td>
-          <td><a href="/users/update/{$value.idusuarios}" class="btn btn-success">Editar</a> / <a href="/users/del/{$value.idusuarios}" class="btn btn-danger">Deletar</a></td>
+          <td><a href="/administracao/users/update/{$value.idusuarios}" class="btn btn-success">Editar</a> / <a href="/administracao/users/del/{$value.idusuarios}" class="btn btn-danger">Deletar</a></td>
         </tr>
         {/loop}
       </tbody>

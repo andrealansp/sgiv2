@@ -1,0 +1,73 @@
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Entradas Financeiras
+      <small> Alteração </small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content container-fluid">
+    <form action="/financeiro/entrada/editar/{$entradas.identrada}" method="post" >
+      <div class="row">
+        <div class="col-lg-2 col-md-5">
+         <div class="form-group">
+          <label for="dataEntrada">Data de Entrada</label>
+          <input type="date" class="form-control" id="dataEntrada" placeholder="Data de Entrada" name="dtentrada" value="{$entradas.dtentrada}">
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-5">
+        <div class="form-group">
+          <label for="descricao">Nome do Irmão</label>
+          <input type="text" class="form-control" id="descricao" placeholder="Nome do irmão" name="desdescricao" value="{$entradas.desdescricao}">
+        </div>    
+      </div>
+      <div class="col-lg-5 col-md-5">
+        <div class="form-group">
+          <label for="valor">Valor</label>
+          <input type="text" class="form-control" id="valor" placeholder="Valor" name="nunvalor" value="{$entradas.nunvalor}">
+        </div>    
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="form-group">
+          <label for="tppag">Tipo de pagamento</label>
+          <select name="destipopag" id="tppag" class="form-control">
+            <option value="">---------------</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cheque">Cheque</option>
+            <option value="Transferência Bancária">Transferência Bancária</option>
+          </select>
+        </div>  
+      </div>
+      <div class="col-lg-4">
+        <div class="form-group">
+          <label for="tpentrada">Tipo de Entrada</label>
+          <select name="destipoentrada" id="tpentrada" class="form-control">
+            <option value="">---------------</option>
+            <option value="Dízimo">Dízimo</option>
+            <option value="Oferta">Oferta</option>
+            <option value="Contribuição Específica">Contribuição Específica</option>
+          </select>
+        </div>     
+      </div> 
+    </div>       
+    <div class="row">
+      <div class="col-lg-2 col-md-2">
+        <button type="submit" class="btn btn-sucess">Enviar</button>
+      </div>
+    </div>
+  </form>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+

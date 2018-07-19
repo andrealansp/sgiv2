@@ -8,6 +8,9 @@
 
 namespace SGI;
 
+include "./vendor/autoload.php";
+
+use \Rain\Tpl;
 /**
  * Description of Mail
  *
